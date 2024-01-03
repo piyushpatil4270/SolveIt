@@ -1,15 +1,8 @@
-import { useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
-
 import {  signInWithPopup} from "firebase/auth";
 import { auth } from "../App";
 
 const  provider= new GoogleAuthProvider()
-
-
-
-
-
 export const SignIn = () => {
   
   async function onSignIn() {
@@ -22,6 +15,7 @@ export const SignIn = () => {
       }
       const token = credential.accessToken;
       const user = result.user;
+      console.log(user)
       
     })
     .catch((error) => {
