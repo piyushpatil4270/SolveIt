@@ -2,7 +2,7 @@ import Logo from "../assets/problem-solving.png"
 
 export const TopBar=()=>{
     return<div className="flex justify-center w-full h-[150px] z-0 ">
-      <div className="w-[80%] bg-black h-full  flex flex-col justify-start items-center" >
+      <div className="w-full bg-black h-full  flex flex-col justify-start items-center" >
         <div className="flex w-full h-[70%] ml-[10%] justify-start items-center  gap-[10px]">
           <img src={Logo} className="w-[80px] h-[80px] object-contain" />
           <span className="text-white text-[25px] text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 ">SolveIt</span>

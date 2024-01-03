@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { RecoilRoot, useRecoilState, useSetRecoilState } from "recoil";
 import { userAtom } from "./store/atoms/user";
 import { TopBar } from "./components/TopBar";
+import { Card } from "./components/Card";
 export const auth=getAuth(app)
 function App() {
  return <RecoilRoot>
@@ -52,10 +53,11 @@ function StoreApp(){
   }
     return (
       <>
-        <div>
+        <div className="place-items-center grid">
+          <div className="max-w-screen-lg w-full align-center px-5 pb-5 pt-8">
           <TopBar/>
-          <span>You are logged in as {user.user?.email}</span>
-     
+          <Card>Hi Piyush</Card>
+          </div>
         </div>
       </>
     )
