@@ -1,4 +1,4 @@
-import { Problems } from "../model/problems"
+import { Problems } from "../model/problems.js"
 export const getAllProblems=async(req,res)=>{
     try {
         const problems=await Problems.find()
