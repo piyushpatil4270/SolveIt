@@ -39,11 +39,7 @@ const TopBaritems = [
   {
     title: "Leaderboard",
     route: "/leaderboard",
-  },
-  {
-    title: "Login",
-    route: "/login",
-  },
+  }
 ];
 
 function NavbarItem({ title, route }: { title: string; route: string }) {
