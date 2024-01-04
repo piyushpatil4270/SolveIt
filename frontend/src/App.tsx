@@ -1,6 +1,6 @@
 import "./index.css" 
-import {Landing} from "./components/Landing"
-import { SignIn } from "./components/SignIn";
+//import {Landing} from "./components/Landing"
+//import { SignIn } from "./components/SignIn";
 import { getAuth,onAuthStateChanged } from "firebase/auth";
 import { app } from "./utils/firebase";
 import { useEffect } from "react";
