@@ -86,12 +86,11 @@ export const LeaderBoard = ({
 }) => {
     return (
 
-        <div className="flex flex-col gap-2 mt-1 shadow-lg ">
+        <div className="mt-1 shadow-lg ">
             <span className="text-[20px] ml-[10px] mt-[10px]">LeaderBoard</span>
-            <div className="mx-[10px]">
-            
-        {leaderboard.map((user,i)=>(
-            <div className="flex  shadow-sm w-full h-[50px] items-center justify-between">
+            <div className="mx-[10px] flex flex-col gap-2">
+            {leaderboard.map((user,i)=>(
+            <div className="flex  shadow-sm w-full h-[50px] items-center justify-between ">
                 <span className="">{i+1}.</span>
                 <span className="">{user.name}</span>
                 <span className="">{user.image}</span>
