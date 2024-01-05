@@ -17,18 +17,27 @@ export const LeaderBoard = () => {
     return (
 
         <div className="mt-1 shadow-lg ">
+           {leaderboard?(
+            <>
             <span className="text-[20px] ml-[10px] mt-[10px]">LeaderBoard</span>
             <div className="mx-[10px] flex flex-col gap-2">
             {leaderboard?.map((user,i)=>(
-            <div className="flex  shadow-sm w-full h-[50px] items-center justify-between ">
-                <span className="">{i+1}.</span>
-                <span className="">{user.email}</span>
-                <span className="">{user.points}</span>
+            <div className="flex  shadow-sm w-full h-[50px] items-center justify-start ">
+                <span className="w-[10%]" >{i+1}.</span>
+                <div className="flex w-[70%] justify-start">
+                <span className="">{user.email.split("@")[0]}</span>
+                </div>
+                <span className="w-[20%]">{user.points} points</span>
             </div>
         ))}
         </div>
-        </div>
+        </>
+           ):(
+            "Loading..."
+           )} 
+           </div>
     )
+    
 };
 
 
