@@ -1,96 +1,13 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const logo=""
-
-export const LeaderboardItems=[
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    },
-    {
-        name:"Ayush",
-        image:logo,
-        points:5
-    }
-]
-
-
-export const LeaderBoard = ({
-  leaderboard,
-}: {
-  leaderboard: { name: string; image: string; points: number }[];
-}) => {
+export const LeaderBoard = () => {
+    const[leaderboard,setLeaderboard]=useState<{_id:string,email:string,points:number}[]>()
     const getLeaderboard=async()=>{
         const res=await axios.get("http://localhost:7000/api/users/leaderboard")
         .then((res)=>{
             console.log("Leaderboard",res.data)
+            setLeaderboard(res.data)
         })
        
     }
@@ -102,11 +19,10 @@ export const LeaderBoard = ({
         <div className="mt-1 shadow-lg ">
             <span className="text-[20px] ml-[10px] mt-[10px]">LeaderBoard</span>
             <div className="mx-[10px] flex flex-col gap-2">
-            {leaderboard.map((user,i)=>(
+            {leaderboard?.map((user,i)=>(
             <div className="flex  shadow-sm w-full h-[50px] items-center justify-between ">
                 <span className="">{i+1}.</span>
-                <span className="">{user.name}</span>
-                <span className="">{user.image}</span>
+                <span className="">{user.email}</span>
                 <span className="">{user.points}</span>
             </div>
         ))}

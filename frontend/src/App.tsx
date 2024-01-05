@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { RecoilRoot, useRecoilState} from "recoil";
 import { userAtom } from "./store/atoms/user";
 import { TopBar } from "./components/TopBar";
-import { LeaderBoard, LeaderboardItems } from "./components/LeaderBoard";
+import { LeaderBoard } from "./components/LeaderBoard";
 import { Route, Routes } from "react-router-dom";
 import { About } from "./components/About";
 import { Activity } from "./components/Activity";
@@ -77,11 +77,11 @@ function StoreApp(){
           <div className="mt-2">
           <Routes>
            
-            <Route path="/about" Component={About}/>
+            <Route path="/" Component={About}/>
             <Route path="/activity" Component={Activity} />
             <Route path="/problems" Component={Problems} />
             <Route path="/problems/:id" Component={ProblemCard} />
-            <Route path="/leaderboard" element={<LeaderBoard leaderboard={LeaderboardItems} />} />
+            <Route path="/leaderboard" Component={LeaderBoard} />
            
           </Routes>
           </div>

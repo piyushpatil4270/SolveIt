@@ -22,7 +22,7 @@ export const TopBar = () => {
 const TopBaritems = [
   {
     title: "About",
-    route: "/about",
+    route: "/",
   },
   {
     title: "Activity",
