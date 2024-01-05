@@ -33,10 +33,6 @@ const TopBaritems = [
     route: "/problems",
   },
   {
-    title: "Competitions",
-    route: "/competitions",
-  },
-  {
     title: "Leaderboard",
     route: "/leaderboard",
   }

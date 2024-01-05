@@ -14,6 +14,7 @@ import { Activity } from "./components/Activity";
 import { Problems } from "./components/Problem";
 import { SignIn } from "./components/SignIn";
 import axios from "axios";
+import { ProblemCard } from "./components/ProblemCard";
 export const auth=getAuth(app)
 function App() {
  return <RecoilRoot>
@@ -79,6 +80,7 @@ function StoreApp(){
             <Route path="/about" Component={About}/>
             <Route path="/activity" Component={Activity} />
             <Route path="/problems" Component={Problems} />
+            <Route path="/problems/:id" Component={ProblemCard} />
             <Route path="/leaderboard" element={<LeaderBoard leaderboard={LeaderboardItems} />} />
            
           </Routes>
