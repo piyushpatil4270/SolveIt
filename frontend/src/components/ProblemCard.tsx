@@ -1,16 +1,22 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { userAtom } from "../store/atoms/user"
 
 export const ProblemCard=()=>{
     const {id}=useParams()
+    const user=useRecoilState(userAtom)
+    console.log(user[0].user?.email)
+    const userEmail=user[0].user?.email
     const [problem,setProblem]=useState<{_id:string,title:string,description:string,answer:string}>()
     const [response,setResponse]=useState<string>("")
     const [error,setError]=useState<string>("")
     const [answer,setAnswer]=useState("")
     console.log(id)
     type GetSolution={
-        answer:string
+        answer:string,
+        email:string
     }
     const fetchProblem=async()=>{
       const res=axios.get(`http://localhost:7000/api/problems/${id}`)
@@ -19,7 +25,7 @@ export const ProblemCard=()=>{
       })
     }
     const checkAnswer=async()=>{
-       const res=await axios.post<GetSolution>(`http://localhost:7000/api/problems/${id}/answer`,{answer:answer})
+       const res=await axios.post<GetSolution>(`http://localhost:7000/api/problems/${id}/answer`,{answer:answer,email:userEmail})
        .then((res)=>{
         if(res.status === 203){
             setResponse(res.data.answer)
@@ -43,7 +49,7 @@ export const ProblemCard=()=>{
           <div className="flex flex-col gap-[10px]">
          <span className="text text-[18px]">{problem.title}</span>
          <span className="text-[16px]">{problem.description}</span>
-         <div className=" flex py-1  bg-slate-300 rounded-sm w-[50%]">
+         <div className=" flex py-1  bg-slate-300 rounded-sm w-[30%]">
          <input className="bg-transparent outline-none ml-[10px] w-full"   placeholder="Enter Answer" value={answer} onChange={(e)=>{
             setAnswer(e.target.value)
             setError("")
@@ -52,7 +58,7 @@ export const ProblemCard=()=>{
         
         </div>
         {response?<span className="text-[14px] text-green-700">{response}</span>:<span className="text-[12px] text-red-700">{error}</span>}
-       {answer && <button className="w-fit h-fit py-[2px] px-[4px] bg-green-500 rounded-sm text-white" onClick={()=>{checkAnswer()}}>Submit</button>}
+        {answer && <button className="w-fit h-fit py-[2px] px-[4px] bg-green-500 rounded-sm text-white" onClick={()=>{checkAnswer()}}>Submit</button>}
         </div> 
         </div>
         ):("Loading...")}

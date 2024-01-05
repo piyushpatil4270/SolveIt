@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect } from "react";
+
 const logo=""
 
 export const LeaderboardItems=[
@@ -84,6 +87,16 @@ export const LeaderBoard = ({
 }: {
   leaderboard: { name: string; image: string; points: number }[];
 }) => {
+    const getLeaderboard=async()=>{
+        const res=await axios.get("http://localhost:7000/api/users/leaderboard")
+        .then((res)=>{
+            console.log("Leaderboard",res.data)
+        })
+       
+    }
+    useEffect(()=>{
+        getLeaderboard()
+    },[])
     return (
 
         <div className="mt-1 shadow-lg ">
