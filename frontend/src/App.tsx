@@ -72,9 +72,9 @@ function StoreApp(){
  return (
       <>
       <div className="place-items-center grid ">
-          <div className="max-w-screen-lg w-full align-center px-5 pb-5 pt-8 ">
+          <div className="xs:w-[500px] sm:w-full max-w-screen-lg  align-center px-5 pb-5 pt-8 ">
           <TopBar/>
-          <div className="mt-2">
+          <div className="mt-2 ">
           <Routes>
            
             <Route path="/" Component={About}/>
