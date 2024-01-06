@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../App";
 import { useResetRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
+import { Card } from "./Card";
 
 export const About = () => {
   const reset = useResetRecoilState(userAtom);
@@ -14,7 +15,7 @@ export const About = () => {
   return (
     <div className="flex gap-[10px]">
       <div className="flex mt-1 shadow-lg gap-2 w-full ">
-        <div className="ml-[10px]  my-[10px] w-[70%]">
+        <div className="ml-[10px]  my-[10px] xs:w-[60%]">
           <div>
             <span className="text-[20px]">About</span>
           </div>
@@ -34,14 +35,15 @@ export const About = () => {
           </div>
         </div>
       </div>
-      <div className="shadow-lg w-[30%] flex items-center justify-center">
+      <Card>
+        <span className="xs:hidden  sm:flex">Without mathematics, there's nothing you can do. Everything around you is mathematics</span>
         <button
           className="bg-green-600 text-[12px] w-[55px] h-[25px] rounded-sm"
           onClick={() => handleLogout()}
         >
           Logout
         </button>
-      </div>
+      </Card>
     </div>
   );
 };
