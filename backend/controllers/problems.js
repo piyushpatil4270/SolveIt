@@ -1,6 +1,7 @@
 import { Problems } from "../model/problems.js"
 import { Submissions } from "../model/submissions.js"
 import {Users} from "../model/users.js"
+import {ObjectId} from "mongodb"
 export const getProblem=async(req,res)=>{
     try {
        const {id}=req.params 
@@ -32,7 +33,7 @@ export const getProblemSolution=async(req,res)=>{
             )
         if(problem.answer == Number(answer)) {
 
-            let submitted={id:id,status:"Accepted"}
+            let submitted={id:id,title:problem.title,status:"Accepted"}
            const update= await Users.findOneAndUpdate(
             {"email":email},
             {$inc:{"points":+1}},
@@ -49,7 +50,7 @@ export const getProblemSolution=async(req,res)=>{
         return res.status(203).json({answer:"Correct Answer"})
         //return res.status(203).json(user[0])
         }
-        let rejected={id:id,status:"Rejected"}
+        let rejected={id:id,title:problem.title,status:"Rejected"}
         const update3= await Users.updateOne(
             {email:email},
             {$push:{submissions:rejected}}
@@ -70,5 +71,17 @@ export const getLeaderboard=async(req,res)=>{
     } catch (error) {
         res.status(404).json(error.message)
         
+    }
+}
+
+export const getUserSubmissions=async(req,res)=>{
+    try {
+        const {email}=req.body
+        const user=await Users.find({email:email})
+        const submissions=user[0]?.submissions
+        
+        res.status(202).json(submissions)
+    } catch (error) {
+        res.status(404).json(error.message)
     }
 }
