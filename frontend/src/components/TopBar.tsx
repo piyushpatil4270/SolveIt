@@ -40,7 +40,7 @@ const TopBaritems = [
 
 function NavbarItem({ title, route }: { title: string; route: string }) {
   return (
-    <div className="sm:mx-10 xs:mx-7 text-slate-500 text-[lg] cursor-pointer hover:text-white">
+    <div className="sm:mx-10 xs:mx-4 text-slate-500 text-[lg] cursor-pointer hover:text-white">
       <Link to={route}>{title}</Link>
     </div>
   );
@@ -48,7 +48,7 @@ function NavbarItem({ title, route }: { title: string; route: string }) {
 
 const Navbar = () => {
   return (
-    <div className="flex xs:justify-center sm:justify-normal">
+    <div className="flex xs:w-full xs:justify-start sm:justify-normal">
       {TopBaritems.map((item) => (
         <NavbarItem route={item.route} title={item.title} />
       ))}
