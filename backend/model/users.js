@@ -9,6 +9,10 @@ const users=Schema({
     points:{
         type:Number,
         default:0
+    },
+    submissions:{
+        type:Array,
+        default:[]
     }
 })
 

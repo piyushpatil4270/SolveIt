@@ -22,8 +22,8 @@ export const getAllProblems=async(req,res)=>{
 
 export const getProblemSolution=async(req,res)=>{
     try {
-        const {answer}=req.body
-        const {id,email}=req.params
+        const {answer,email}=req.body
+        const {id}=req.params
         const problem= await Problems.findById(id)
         
         await Submissions.findOneAndUpdate(
@@ -31,15 +31,30 @@ export const getProblemSolution=async(req,res)=>{
             {$inc: {"count":+1}}
             )
         if(problem.answer == Number(answer)) {
-        /**/
-      const update= await Users.findOneAndUpdate(
-           {"email":email},
-            {$inc:{"points":+1}}
+
+            let submitted={id:id,status:"Accepted"}
+           const update= await Users.findOneAndUpdate(
+            {"email":email},
+            {$inc:{"points":+1}},
+            
 
         )
-        const user=await Users.find(email)
+        const update2=await Users.updateOne(
+            {email:email},
+            {$push:{submissions:submitted}}
+        )
+        
+        const user=await Users.find({email:email})
+         console.log(email)
         return res.status(203).json({answer:"Correct Answer"})
+        //return res.status(203).json(user[0])
         }
+        let rejected={id:id,status:"Rejected"}
+        const update3= await Users.updateOne(
+            {email:email},
+            {$push:{submissions:rejected}}
+        )
+         
         res.status(202).json({answer:"Wrong Answer"})
     } catch (error) {
         res.status(404).json(error.message)
