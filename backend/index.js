@@ -3,14 +3,15 @@ import { connection } from "./connection/connection.js"
 import userRouter from "./routes/users.js"
 import problemsRouter from "./routes/problems.js"
 import cors from "cors"
+import "dotenv/config.js"
 
 const app=express()
 connection()
 app.use(express.json())
 app.use(cors())
 
-
-const port=7000
+let port;
+port=process.env.PROD_PORT
 
 app.use("/api/users",userRouter)
 app.use("/api/problems",problemsRouter)
