@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 let port;
-port=process.env.PROD_PORT
+port=5000
 
 app.get("/",async(req,res)=>{
     const users= await Users.find()
