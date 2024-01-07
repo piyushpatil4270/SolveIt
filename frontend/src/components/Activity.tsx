@@ -8,7 +8,7 @@ export const Activity=()=>{
     const userEmail = user[0].user?.email;
     const [submissions,setSubmissions]=useState<{title:string,status:string}[]>()
     const userSubmissions=async()=>{
-        const res=axios.post(`http://localhost:7000/api/problems/user/submissions`,{email:userEmail})
+        const res=axios.post(`https://solveit-pi.vercel.app/api/problems/user/submissions`,{email:userEmail})
         .then((res)=>{
             setSubmissions(res.data)
         })
