@@ -59,20 +59,20 @@ function StoreApp(){
   },[])
   
   
-  if(!user.user?.email){
-    return <div>
-      <span>Login</span>
+  /*if(!user.user?.email){
+    return <>
       <SignIn/>
-    </div>
-  }
+      </>
+  }*/
   
-  if(user.loading){
-    <span>Loading...</span>
-  }
+  
  return (
       <>
       <div className=" ">
-          <div className="xs:w-[100%] sm:w-full  align-center px-5 pb-5 pt-8 ">
+     
+          <div className="xs:w-[100%] sm:w-full align-center">
+          {user.user?.email?(
+          <>
           <TopBar/>
           <div className="mt-2 ">
           <Routes>
@@ -85,9 +85,15 @@ function StoreApp(){
            
           </Routes>
           </div>
+          </>
+          )
+          :(
+            <SignIn/>
+          )}
           {/*<LeaderBoard leaderboard={LeaderboardItems} />*/}
           
           </div>
+          
         </div>
       </>
     )
