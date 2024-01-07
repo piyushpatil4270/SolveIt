@@ -4,6 +4,7 @@ import userRouter from "./routes/users.js"
 import problemsRouter from "./routes/problems.js"
 import cors from "cors"
 import "dotenv/config.js"
+import { Users } from "./model/users.js"
 
 const app=express()
 connection()
@@ -17,8 +18,9 @@ app.use(cors({
 let port;
 port=process.env.PROD_PORT
 
-app.get("/",(req,res)=>{
-    res.status(202).json("Welcome to SolveIt")
+app.get("/",async(req,res)=>{
+    const users= await Users.find()
+    res.status(202).json(users)
 })
 app.use("/api/users",userRouter)
 app.use("/api/problems",problemsRouter)
