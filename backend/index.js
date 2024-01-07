@@ -20,7 +20,7 @@ port=process.env.PROD_PORT
 
 app.get("/",async(req,res)=>{
     const users= await Users.find()
-    res.status(202).json(users)
+    res.status(202).send(users)
 })
 app.use("/api/users",userRouter)
 app.use("/api/problems",problemsRouter)
