@@ -17,6 +17,9 @@ app.use(cors({
 let port;
 port=process.env.PROD_PORT
 
+app.get("/",(req,res)=>{
+    res.status(202).json("Welcome to SolveIt")
+})
 app.use("/api/users",userRouter)
 app.use("/api/problems",problemsRouter)
 
