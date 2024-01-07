@@ -6,7 +6,7 @@ export const Problems = () => {
   const [problems, setProblems] = useState<[{_id:string,title:string,description:string}]>();
   const fetchProblems = async () => {
     const res = await axios
-      .get("http://localhost:7000/api/problems/all")
+      .get("https://solveit-pi.vercel.app/api/problems/all")
       .then((res) => {
         console.log(res.data);
         setProblems(res.data);

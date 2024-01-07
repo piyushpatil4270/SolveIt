@@ -25,14 +25,14 @@ export const ProblemCard = () => {
   };
   const fetchProblem = async () => {
     const res = axios
-      .get(`http://localhost:7000/api/problems/${id}`)
+      .get(`https://solveit-pi.vercel.app/api/problems/${id}`)
       .then((res) => {
         setProblem(res.data);
       });
   };
   const checkAnswer = async () => {
     const res = await axios
-      .post<GetSolution>(`http://localhost:7000/api/problems/${id}/answer`, {
+      .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
         answer: answer,
         email: userEmail,
       })

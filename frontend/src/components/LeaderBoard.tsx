@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const LeaderBoard = () => {
     const[leaderboard,setLeaderboard]=useState<{_id:string,email:string,points:number}[]>()
     const getLeaderboard=async()=>{
-        const res=await axios.get("http://localhost:7000/api/users/leaderboard")
+        const res=await axios.get("https://solveit-pi.vercel.app/api/users/leaderboard")
         .then((res)=>{
             console.log("Leaderboard",res.data)
             setLeaderboard(res.data)
