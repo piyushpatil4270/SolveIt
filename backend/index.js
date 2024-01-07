@@ -20,7 +20,5 @@ port=process.env.PROD_PORT
 app.use("/api/users",userRouter)
 app.use("/api/problems",problemsRouter)
 
-app.get("/",(req,res)=>{
-    res.status(202).json("Hello")
-})
+
 app.listen(port,()=>console.log(`Server started on port ${port}`))
