@@ -31,6 +31,7 @@ export const ProblemCard = () => {
         setProblem(res.data);
       });
   };
+  const initialCode="class Solution:\n void(vector<int>&board){\n return board;\n}"
   const checkAnswer = async () => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
@@ -104,11 +105,14 @@ export const ProblemCard = () => {
               </div>
             </div>
             <div className="w-[65%]">
+             {/*<button onClick={()=>getEditorValue()}>Get editor value</button>*/}
             <Editor
                 theme="vs-dark"
                 defaultLanguage="python"
+                onMount={editorDidMount}
                 width="100%"
                 height="80%"
+                value={initialCode}
                 
                 />
             </div>
