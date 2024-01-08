@@ -10,7 +10,7 @@ const app=express()
 connection()
 app.use(express.json())
 app.use(cors({
-    origin:["https://solve-it-woad.vercel.app"],
+   // origin:["https://solve-it-woad.vercel.app"],
     methods:["POST","GET"],
     credentials:true
 }))
