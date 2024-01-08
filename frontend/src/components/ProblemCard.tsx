@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
@@ -7,7 +7,9 @@ import Editor from "@monaco-editor/react"
 export const ProblemCard = () => {
   const { id } = useParams();
   const user = useRecoilState(userAtom);
-  const editorRef=useRef(null)
+  const [value,setValue]=useState("")
+  const [processing,setProcessing]=useState(false)
+  const [customInput,setCustomInput]=useState("")
   console.log(user[0].user?.email);
   const userEmail = user[0].user?.email;
   const [problem, setProblem] = useState<{
@@ -31,7 +33,6 @@ export const ProblemCard = () => {
         setProblem(res.data);
       });
   };
-  const initialCode="class Solution:\n void(vector<int>&board){\n return board;\n}"
   const checkAnswer = async () => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
@@ -47,14 +48,47 @@ export const ProblemCard = () => {
       });
   };
 
-  const editorDidMount=(editor:any,monaco:any)=>{
-    editorRef.current=editor;
+  const handleEditorChange=(value:any)=>{
+   setValue(value)
+   console.log("editor value",value)
   }
 
-  const getEditorValue=()=>{
-      // @ts-ignore: Object is possibly 'null'.
-   alert(editorRef.current.getValue());
+  const handleCompilation=()=>{
+    setProcessing(true);
+    const formData = {
+      language_id: 71,
+      // encode source code in base64
+      source_code: btoa(value),
+      stdin: btoa(customInput),
+    };
+    const options = {
+      method: "POST",
+      url: "https://judge0-ce.p.rapidapi.com/submissions",
+      params: { base64_encoded: "true", fields: "*" },
+      headers: {
+        "content-type": "application/json",
+        "Content-Type": "application/json",
+        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+      },
+      data: formData,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log("res.data", response.data);
+        const token = response.data.token;
+        console.log("res.token",token)
+      })
+      .catch((err) => {
+        let error = err.response ? err.response.data : err;
+        setProcessing(false);
+        console.log(error);
+      });
   }
+
+  
   useEffect(() => {
     fetchProblem();
   }, []);
@@ -109,11 +143,10 @@ export const ProblemCard = () => {
             <Editor
                 theme="vs-dark"
                 defaultLanguage="python"
-                onMount={editorDidMount}
                 width="100%"
                 height="80%"
-                value={initialCode}
-                
+                value={value}
+                onChange={handleEditorChange}
                 />
             </div>
             </div>
