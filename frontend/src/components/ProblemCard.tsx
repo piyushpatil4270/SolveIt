@@ -45,6 +45,15 @@ export const ProblemCard = () => {
         }
       });
   };
+
+  const editorDidMount=(editor:any,monaco:any)=>{
+    editorRef.current=editor;
+  }
+
+  const getEditorValue=()=>{
+      // @ts-ignore: Object is possibly 'null'.
+   alert(editorRef.current.getValue());
+  }
   useEffect(() => {
     fetchProblem();
   }, []);
