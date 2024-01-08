@@ -68,7 +68,7 @@ function StoreApp(){
   
  return (
       <>
-      <div className=" ">
+      <div className="h-dvh">
      
           <div className="xs:w-[100%] sm:w-full align-center">
           {user.user?.email?(
