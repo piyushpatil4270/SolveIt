@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
+import {ThumbUpAlt,ThumbDownAlt} from "@mui/icons-material"
 import Editor from "@monaco-editor/react"
+
 export const ProblemCard = () => {
   const { id } = useParams();
   const user = useRecoilState(userAtom);
@@ -62,16 +64,19 @@ export const ProblemCard = () => {
       stdin: btoa(customInput),
     };
     const options = {
-      method: "POST",
-      url: "https://judge0-ce.p.rapidapi.com/submissions",
-      params: { base64_encoded: "true", fields: "*" },
+      method: 'POST',
+      url: 'https://online-code-compiler.p.rapidapi.com/v1/',
       headers: {
-        "content-type": "application/json",
-        "Content-Type": "application/json",
-        "X-RapidAPI-Host": 'https://judge0-ce.p.rapidapi.com',
-        "X-RapidAPI-Key": '39315176b8msh06ed59e28e589e7p111e04jsn49f7d47501c0',
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': '39315176b8msh06ed59e28e589e7p111e04jsn49f7d47501c0',
+        'X-RapidAPI-Host': 'online-code-compiler.p.rapidapi.com'
       },
-      data: formData,
+      data: {
+        language: 'python3',
+        version: 'latest',
+        code: value,
+        input: null
+      }
     };
 
     axios
@@ -101,26 +106,20 @@ export const ProblemCard = () => {
             <div className="flex flex-col gap-[15px] py-[10px] xs:w-[50%] sm:w-[35%]">
               <span className="text-[22px]">Problem</span>
               <div className="flex flex-col gap-[10px]">
-                <span className="text text-[18px]">{problem.title}</span>
-                <span className="text-[16px]">{problem.description}</span>
-               {/*  <div className=" flex py-1  bg-slate-300 rounded-sm w-[30%]">
-                 <input
-                    className="bg-transparent outline-none ml-[10px] w-full"
-                    placeholder="Enter Answer"
-                    value={answer}
-                    onChange={(e) => {
-                      setAnswer(e.target.value);
-                      setError("");
-                      setResponse("");
-                    }}
-                  />
-                </div>*/}
-                {response ? (
+                <span className="text text-[22px] font-semibold">{problem.title}</span>
+                <div className="flex  my-2 justify-between">
+                <span className="text-green-700 text-[18px] font-medium">Easy</span>
+                
+                <ThumbUpAlt fontSize='small' color="success"/>
+                <ThumbDownAlt fontSize='small' color="warning"/>
+                </div>
+                <span className="text-[16px] font-medium">{problem.description}</span>
+               {/*response ? (
                   <span className="text-[14px] text-green-700">{response}</span>
                 ) : (
                   <span className="text-[12px] text-red-700">{error}</span>
-                )}
-                {answer && (
+                )*/}
+                {/*answer && (
                   <button
                     className="w-fit h-fit py-[2px] px-[4px] bg-green-500 rounded-sm text-white"
                     onClick={() => {
@@ -129,7 +128,7 @@ export const ProblemCard = () => {
                   >
                     Submit
                   </button>
-                )}
+                  )*/}
                {/*<Editor
                 theme="vs-dark"
                 defaultLanguage="python"
