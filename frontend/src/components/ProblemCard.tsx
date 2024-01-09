@@ -68,8 +68,8 @@ export const ProblemCard = () => {
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": 'https://judge0-ce.p.rapidapi.com',
+        "X-RapidAPI-Key": '39315176b8msh06ed59e28e589e7p111e04jsn49f7d47501c0',
       },
       data: formData,
     };
@@ -139,7 +139,7 @@ export const ProblemCard = () => {
               </div>
             </div>
             <div className="w-[65%]">
-             {/*<button onClick={()=>getEditorValue()}>Get editor value</button>*/}
+             <button onClick={()=>handleCompilation()}>Compile and Run</button>
             <Editor
                 theme="vs-dark"
                 defaultLanguage="python"
