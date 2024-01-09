@@ -6,12 +6,15 @@ import { userAtom } from "../store/atoms/user";
 import {ThumbUpAlt,ThumbDownAlt} from "@mui/icons-material"
 import Editor from "@monaco-editor/react"
 
+
 export const ProblemCard = () => {
   const { id } = useParams();
   const user = useRecoilState(userAtom);
   const [value,setValue]=useState("")
   const [processing,setProcessing]=useState(false)
   const [customInput,setCustomInput]=useState("")
+
+  
   console.log(user[0].user?.email);
   const userEmail = user[0].user?.email;
   const [problem, setProblem] = useState<{
@@ -19,6 +22,7 @@ export const ProblemCard = () => {
     title: string;
     description: string;
     answer: string;
+    starterCode:string
   }>();
   const [response, setResponse] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -72,7 +76,7 @@ export const ProblemCard = () => {
         'X-RapidAPI-Host': 'online-code-compiler.p.rapidapi.com'
       },
       data: {
-        language: 'python3',
+        language: 'cpp',
         version: 'latest',
         code: value,
         input: null
@@ -129,24 +133,24 @@ export const ProblemCard = () => {
                     Submit
                   </button>
                   )*/}
-               {/*<Editor
-                theme="vs-dark"
-                defaultLanguage="python"
-                height="150px"
-                width="150px"
-                />*/}
+                <button
+                className="px-1 py-1 bg-green-600 w-fit my-2 rounded-sm text-white outline-none"
+                onClick={handleCompilation}
+                >
+                  Compile and Run
+                </button>
+               
               </div>
             </div>
             <div className="w-[65%]">
-             <button onClick={()=>handleCompilation()}>Compile and Run</button>
-            <Editor
+             
+             <Editor
                 theme="vs-dark"
                 defaultLanguage="python"
+                height="70%"
                 width="100%"
-                height="80%"
-                value={value}
+                value={problem.starterCode}
                 onChange={handleEditorChange}
-                
                 />
             </div>
             </div>

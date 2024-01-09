@@ -16,11 +16,13 @@
     "@mui/icons-material": "^5.15.3",
     "@mui/material": "^5.15.3",
     "@types/chart.js": "^2.9.41",
+    "@uiw/react-codemirror": "^4.21.21",
     "axios": "^1.6.4",
     "chart.js": "^4.4.1",
     "firebase": "^10.7.1",
     "monaco-typescript": "^4.10.0",
     "react": "^18.2.0",
+    "react-codemirror2": "^7.3.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "recoil": "^0.7.7"
