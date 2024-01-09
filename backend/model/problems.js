@@ -9,8 +9,13 @@ const problems=Schema({
         type:String,
         required:true
     },
+
     answer:{
         type:Number,
+        required:true
+    },
+    starterCode:{
+        type:String,
         required:true
     }
 })
