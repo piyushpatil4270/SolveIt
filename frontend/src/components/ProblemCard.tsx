@@ -107,7 +107,7 @@ export const ProblemCard = () => {
               <span className="text-[22px]">Problem</span>
               <div className="flex flex-col gap-[10px]">
                 <span className="text text-[22px] font-semibold">{problem.title}</span>
-                <div className="flex  my-2 justify-between">
+                <div className="flex  my-2 justify-between w-[50%]  ">
                 <span className="text-green-700 text-[18px] font-medium">Easy</span>
                 
                 <ThumbUpAlt fontSize='small' color="success"/>
@@ -146,6 +146,7 @@ export const ProblemCard = () => {
                 height="80%"
                 value={value}
                 onChange={handleEditorChange}
+                
                 />
             </div>
             </div>
