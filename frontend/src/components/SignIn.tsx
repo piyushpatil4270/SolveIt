@@ -44,7 +44,7 @@ export const SignIn = () => {
       <img src={cover} alt="logo" className="w-[60px] h-[60px] rounded-full " />
       <span className="text text-xl font-normal">CodeIt</span>
     </div>
-    <div className="flex w-full flex-col items-center my-7 gap-3 justify-center">
+    <div className="flex w-full flex-col items-center my-7 gap-5 justify-center">
        <input className="w-[40%] outline-none h-8 rounded-sm" />
        <input className="w-[40%] outline-none h-8 rounded-sm" />
     </div>
