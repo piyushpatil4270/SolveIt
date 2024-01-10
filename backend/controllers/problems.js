@@ -33,7 +33,7 @@ export const checkSolution=async(req,res)=>{
         
         return res.status(202).json(answer)
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json(error.message)
     }
 }
 
