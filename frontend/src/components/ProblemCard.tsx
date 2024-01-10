@@ -42,7 +42,7 @@ export const ProblemCard = () => {
   const checkAnswer = async (value:string) => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
-        answer: "value",
+        answer: value,
         email: userEmail,
       })
       .then((res) => {
