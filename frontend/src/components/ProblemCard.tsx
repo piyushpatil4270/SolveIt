@@ -39,18 +39,14 @@ export const ProblemCard = () => {
         setProblem(res.data);
       });
   };
-  const checkAnswer = async () => {
+  const checkAnswer = async (value:string) => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
-        answer: answer,
+        answer: "value",
         email: userEmail,
       })
       .then((res) => {
-        if (res.status === 203) {
-          setResponse(res.data.answer);
-        } else {
-          setError(res.data?.answer);
-        }
+        console.log(res.data)
       });
   };
 
@@ -58,6 +54,8 @@ export const ProblemCard = () => {
    setValue(value)
    console.log("editor value",value)
   }
+  
+ 
 
   const handleCompilation=()=>{
     setProcessing(true);
@@ -89,6 +87,7 @@ export const ProblemCard = () => {
         console.log("res.data", response.data);
         const token = response.data.token;
         console.log("res.token",token)
+        checkAnswer(response.data?.output)
       })
       .catch((err) => {
         let error = err.response ? err.response.data : err;
