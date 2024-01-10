@@ -24,7 +24,7 @@ export const getAllProblems=async(req,res)=>{
 export const checkSolution=async(req,res)=>{
     try {
         const {answer,email}=req.body
-        res.status(205).json("gotit")
+        res.status(202).json("gotit")
     } catch (error) {
         res.status(404).json(error)
     }
