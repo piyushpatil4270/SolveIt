@@ -24,7 +24,11 @@ export const getAllProblems=async(req,res)=>{
 export const checkSolution=async(req,res)=>{
     try {
         const {answer,email}=req.body
+        const {id} =req.params
+        const problem= await Problems.find({_id:id})
+        problem=problem[0]
         if (answer.includes('error:')) return res.status(202).json(answer)
+        if(answer.includes(problem.answer.toString() && answer.includes(problem.mainFunction()))) return res.status(202).json("Submitted")
         return res.status(202).json(answer)
     } catch (error) {
         res.status(404).json(error)
