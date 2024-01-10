@@ -26,10 +26,10 @@ export const checkSolution=async(req,res)=>{
         const {answer,email,memory}=req.body
         const {id} =req.params
         var problem= await Problems.find({_id:id})
-        problem=problem[0]
+        var currentproblem=problem[0]
         if (answer.includes('error:')) return res.status(202).json(answer)
-        if(answer.includes(problem.answer.toString() && answer.includes(problem.mainFunction()))) return res.status(202).json("Submitted")
-        if(answer.includes(problem.answer.toString() && !answer.includes(problem.mainFunction()))) return res.status(202).json("Write function with specified name")
+        if(answer.includes(currentproblem.answer.toString() && answer.includes(currentproblem.mainFunction()))) return res.status(202).json("Submitted")
+        if(answer.includes(currentproblem.answer.toString() && !answer.includes(currentproblem.mainFunction()))) return res.status(202).json("Write function with specified name")
         
         return res.status(202).json(answer)
     } catch (error) {
