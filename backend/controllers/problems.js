@@ -31,6 +31,7 @@ export const checkSolution=async(req,res)=>{
        // const result = Compile({answer:currentProblem.answer.toString(),output,mainFunction:currentProblem.functionName,userCode})
        // return res.status(202).json({usercode:userCode,email,output})
        const answer = currentProblem.answer.toString()
+       console.log(answer)
        const mainFunction=currentProblem.mainFunction
        if(userCode.includes(answer) && userCode.includes(mainFunction))  return res.status(202).json("correct")
        else if(output.includes(answer) && !userCode.includes(mainFunction) )  return res.status(202).json("incorrect")

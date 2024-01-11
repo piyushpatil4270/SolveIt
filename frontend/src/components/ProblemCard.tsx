@@ -88,6 +88,7 @@ export const ProblemCard = () => {
         console.log("res.data", response.data);
         const token = response.data.token;
         console.log("res.token",token)
+        console.log(value)
         checkAnswer(response.data?.output,value,userEmail)
       })
       .catch((err) => {
