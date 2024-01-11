@@ -28,7 +28,7 @@ export const checkSolution=async(req,res)=>{
         const {id} =req.params
         const problem= await Problems.find({_id:id})
         const currentProblem= problem[0]
-        const result = Compile({answer:problem.answer.toString(),output,mainFunction:problem.functionName,userCode})
+        const result = Compile({answer:currentProblem.answer.toString(),output,mainFunction:currentProblem.functionName,userCode})
        // return res.status(202).json({usercode:userCode,email,output})
        return res.status(202).json(result)
     } catch (error) {
