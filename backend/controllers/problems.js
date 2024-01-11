@@ -1,5 +1,6 @@
 import { Problems } from "../model/problems.js"
 import { Submissions } from "../model/submissions.js"
+import { Compile } from "../utils/CheckCompile.js"
 import {Users} from "../model/users.js"
 import {ObjectId} from "mongodb"
 export const getProblem=async(req,res)=>{
@@ -23,15 +24,12 @@ export const getAllProblems=async(req,res)=>{
 
 export const checkSolution=async(req,res)=>{
     try {
-        const {answer,email,memory}=req.body
+        const {userCode,email,output}=req.body
         const {id} =req.params
-        var problem= await Problems.find({_id:id})
-        var currentproblem=problem[0]
-        if (answer.includes('error:')) return res.status(202).json(answer)
-        if(answer.includes(currentproblem.answer.toString() && answer.includes(currentproblem.mainFunction()))) return res.status(202).json("Submitted")
-        if(answer.includes(currentproblem.answer.toString() && !answer.includes(currentproblem.mainFunction()))) return res.status(202).json("Write function with specified name")
-        
-        return res.status(202).json(answer)
+       // const problem= await Problems.find({_id:id})
+       // const currentProblem= problem[0]
+      //  const result = Compile()
+        return res.status(202).json(userCode,email,output)
     } catch (error) {
         res.status(404).json(error.message)
     }

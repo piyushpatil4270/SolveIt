@@ -39,11 +39,12 @@ export const ProblemCard = () => {
         setProblem(res.data);
       });
   };
-  const checkAnswer = async (value:string) => {
+  const checkAnswer = async(output:string) => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
-        answer: value,
+        userCode: value,
         email: userEmail,
+        output:output,
       })
       .then((res) => {
         console.log(res.data)
