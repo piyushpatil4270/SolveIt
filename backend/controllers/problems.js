@@ -32,7 +32,7 @@ export const checkSolution=async(req,res)=>{
        // return res.status(202).json({usercode:userCode,email,output})
        const answer = String(currentProblem.answer)
       
-       const mainFunction=currentProblem.mainFunction
+       const mainFunction=currentProblem.functionName
        if(output.includes(answer) && userCode.includes(mainFunction))  return res.status(202).json("correct")
        else if(output.includes(answer) && !userCode.includes(mainFunction) )  return res.status(202).json("incorrect")
        return res.status(202).json(output)
