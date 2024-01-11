@@ -33,14 +33,14 @@ export const checkSolution=async(req,res)=>{
        const answer = String(currentProblem.answer)
        const code=String(userCode)
       
-     /*  const mainFunction=currentProblem.functionName
+      const mainFunction=currentProblem.functionName
        if(output.includes(answer) && code.includes(mainFunction))  return res.status(202).json("correct")
        else if(output.includes(answer) && !code.includes(mainFunction) )  return res.status(202).json(mainFunction)
        else if(output.includes("error"))  return res.status(202).json(output)
-       return res.status(202).json(output)*/
+       return res.status(202).json(output)
 
 
-       return res.status(202).json(req.body)
+      // return res.status(202).json(req.body)
     } catch (error) {
         res.status(404).json(error.message)
     }
