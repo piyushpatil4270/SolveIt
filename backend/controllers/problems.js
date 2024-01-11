@@ -33,14 +33,12 @@ export const checkSolution=async(req,res)=>{
        const answer = String(currentProblem.answer)
        const code=String(userCode)
       
-      const mainFunction=currentProblem.functionName
-       if(output.includes(answer) && code.includes(mainFunction))  return res.status(202).json("correct")
-       else if(output.includes(answer) && !code.includes(mainFunction) )  return res.status(202).json("incorrect")
+      const mainFunction=currentProblem.functionName.toLowerCase()
+       if(output.includes(answer) && code.toLowerCase().includes(mainFunction))  return res.status(202).json("correct")
+       else if(output.includes(answer) && !code.toLowerCase().includes(mainFunction) )  return res.status(202).json("incorrect")
        else if(output.includes("error"))  return res.status(202).json(output)
        return res.status(202).json(output)
-
-
-       return res.status(202).json(currentProblem)
+       //return res.status(202).json(currentProblem)
     } catch (error) {
         res.status(404).json(error.message)
     }
