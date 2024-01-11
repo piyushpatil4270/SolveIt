@@ -29,7 +29,7 @@ export const checkSolution=async(req,res)=>{
        // const problem= await Problems.find({_id:id})
        // const currentProblem= problem[0]
       //  const result = Compile()
-        return res.status(202).json({usercode:userCode},{email:email},{output:output})
+        return res.status(202).json({usercode:userCode,email,output})
     } catch (error) {
         res.status(404).json(error.message)
     }
