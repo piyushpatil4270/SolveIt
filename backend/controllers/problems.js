@@ -28,9 +28,16 @@ export const checkSolution=async(req,res)=>{
         const {id} =req.params
         const problem= await Problems.find({_id:id})
         const currentProblem= problem[0]
-        const result = Compile({answer:currentProblem.answer.toString(),output,mainFunction:currentProblem.functionName,userCode})
+       // const result = Compile({answer:currentProblem.answer.toString(),output,mainFunction:currentProblem.functionName,userCode})
        // return res.status(202).json({usercode:userCode,email,output})
-       return res.status(202).json(result)
+       const answer = currentProblem.answer.toString()
+       const mainFunction=currentProblem.mainFunction
+       if(userCode.includes(answer) && userCode.includes(mainFunction))  return res.status(202).json("correct")
+       else if(output.includes(answer) && !userCode.includes(mainFunction) )  return res.status(202).json("incorrect")
+       else  return res.status(202).json(output)
+
+
+       //return res.status(202).json(result)
     } catch (error) {
         res.status(404).json(error.message)
     }
