@@ -89,7 +89,9 @@ export const ProblemCard = () => {
         const token = response.data.token;
         console.log("res.token",token)
         console.log(value)
-        checkAnswer(response.data?.output,value,userEmail)
+        //checkAnswer(response.data?.output,value,userEmail)
+        const body={userCode:value,email:userEmail,output:response.data.output}
+        axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/answer`,body)
       })
       .catch((err) => {
         let error = err.response ? err.response.data : err;
