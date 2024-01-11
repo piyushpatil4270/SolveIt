@@ -26,10 +26,11 @@ export const checkSolution=async(req,res)=>{
     try {
         const {userCode,email,output}=req.body
         const {id} =req.params
-       // const problem= await Problems.find({_id:id})
-       // const currentProblem= problem[0]
-      //  const result = Compile()
-        return res.status(202).json({usercode:userCode,email,output})
+        const problem= await Problems.find({_id:id})
+        const currentProblem= problem[0]
+        const result = Compile({answer:problem.answer.toString(),output,mainFunction:problem.functionName,userCode})
+       // return res.status(202).json({usercode:userCode,email,output})
+       return res.status(202).json(result)
     } catch (error) {
         res.status(404).json(error.message)
     }
