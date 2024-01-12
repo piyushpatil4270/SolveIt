@@ -2,7 +2,7 @@ import axios from "axios"
 import { useRecoilState } from "recoil"
 import { userAtom } from "../store/atoms/user"
 import { useEffect, useState } from "react"
-
+import { Done,Close } from "@mui/icons-material"
 export const Activity=()=>{
     const user=useRecoilState(userAtom)
     const userEmail = user[0].user?.email;
@@ -27,7 +27,9 @@ export const Activity=()=>{
                 <span>{submission.title}</span>
                 </div>
                 <div className="w-[25%]">
-                <span className={`${submission.status==="Accepted"?`text-green-500`:`text-red-600`}`}>{submission.status}</span>
+                {/*<span className={`${submission.status==="Accepted"?`text-green-500`:`text-red-600`}`}>{submission.status}</span>*/}
+                {submission.status==="Accepted" && <Done style={{color:"green"}} />}
+                {submission.status==="Rejected" && <Close style={{color:"red"}} />}
                 </div>
                 </div>
             ))}
