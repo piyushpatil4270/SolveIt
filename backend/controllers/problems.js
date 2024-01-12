@@ -22,7 +22,7 @@ export const getAllProblems=async(req,res)=>{
     }
 }
 
-export const checkSolution=async(req,res)=>{
+export const checkAnswer=async(req,res)=>{
     try {
        res.status(203).json("check solution")
     } catch (error) {
