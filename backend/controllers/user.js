@@ -20,8 +20,15 @@ export const userSignUp = async (req, res) => {
 
 export const userLogIn=async(req,res)=>{
   try {
-    const {body}=req
-    res.status(202).json(body)
+    const {email,password}=req.body
+    const user=await Users.find({email:email})
+    if(!user[0]){
+      const newUser= await Users.create({
+        email:email
+      })
+     return res.status(201).json(newUser.email)
+    }
+    res.status(203).json(user[0].email)
   } catch (error) {
     res.status(404).json(error.message)
   }
