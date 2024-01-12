@@ -28,7 +28,7 @@ export const checkAnswer=async(req,res)=>{
         const {answer,email}=req.body
         const problem=await Problems.find({_id:id})
         const solution=problem[0].answer
-        if(solution===Number(answer)) return res.status(205).json("Correct Answer")
+        if(solution===Number(answer)) return res.status(201).json("Correct Answer")
         return res.status(203).json("Wrong Answer")
     } catch (error) {
         res.status(404).json(error.message)
