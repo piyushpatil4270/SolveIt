@@ -24,7 +24,7 @@ export const getAllProblems=async(req,res)=>{
 
 export const checkSolution=async(req,res)=>{
     try {
-       res.status(202).json("check solution")
+       res.status(203).json("check solution")
     } catch (error) {
         res.status(404).json(error.message)
     }
