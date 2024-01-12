@@ -5,13 +5,14 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
 import {ThumbUpAlt,ThumbDownAlt} from "@mui/icons-material"
 import { Card } from "./Card";
+import { Loader } from "./Loader";
 
 
 export const ProblemCard = () => {
   const { id } = useParams();
   const user = useRecoilState(userAtom);
   const [value,setValue]=useState("")
-  const [processing,setProcessing]=useState(false)
+  const [loading,setLoading]=useState(false)
   const [customInput,setCustomInput]=useState("")
 
   
@@ -24,14 +25,11 @@ export const ProblemCard = () => {
     answer: string;
     starterCode:string
   }>();
-  const [response, setResponse] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
   const [answer, setAnswer] = useState("");
   console.log(id);
-  type GetSolution = {
-    answer: string;
-    email: string;
-  };
+  
   const fetchProblem = async () => {
     const res = axios
       .get(`https://solveit-pi.vercel.app/api/problems/${id}`)
@@ -40,13 +38,21 @@ export const ProblemCard = () => {
       });
   };
   const checkAnswer = async() => {
+    setLoading(true)
     const res = await axios
-      .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
+      .post(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
         answer:answer,
         email:userEmail
       })
       .then((res) => {
         console.log(res.data)
+        setLoading(false)
+        if(res.status===201){
+          setResponse(res.data)
+        }
+        if(res.status===203){
+          setError(res.data)
+        }
       });
   };
 
@@ -74,14 +80,25 @@ export const ProblemCard = () => {
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 
                 <div className="xs:w-[80%] md:w-[45%] flex  h-7 bg-slate-200 rounded-sm outline-none ">
-                  <input className="ml-4 h-full bg-transparent outline-none" value={answer} onChange={(e)=>setAnswer(e.target.value)}/>
+                  <input className="ml-4 h-full bg-transparent outline-none" value={answer} onChange={(e)=>{
+                    setAnswer(e.target.value)
+                    setError("")
+                    setResponse("")
+                  }}/>
                 </div>
-
+              <div>
+               
+                {error && <span className="text-red-600">{error}</span>}
+                {response &&  <span className="text-green-600">{response}</span>}
+              </div>
               <button
-                className="px-1 py-1 bg-green-600 w-fit my-2 rounded-sm text-white outline-none"
+                className="px-1 py-1 bg-green-600 w-[70px] h-[30px] flex justify-center items-center my-2 rounded-sm text-white outline-none"
                 onClick={checkAnswer}
                 >
-                  Check answer
+                {loading?(<div className="">
+                   <div className="h-4 w-4 rounded-full animate-spin border-b-2 border-white"/>
+                   </div>
+                ):("Submit")}
                 </button>
                
               </div>
