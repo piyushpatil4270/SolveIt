@@ -25,6 +25,15 @@ export const SignIn = () => {
   async function logIn(){
     if(formData.email && formData.password){
       const res=axios.post("https://solveit-pi.vercel.app/api/users/login",formData)
+      .then((res)=>{
+        setUser({
+          loading:false,
+          user:{
+            email:res.data
+          }
+         })
+         console.log(user)
+      })
     }
   }
 
