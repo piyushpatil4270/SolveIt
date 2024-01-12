@@ -36,13 +36,13 @@ export const SignIn = () => {
   return <div className="w-[100%] h-full">
 {/*<button className="bg-green-700" onClick={()=>onSignIn()}>Sign-In</button>*/}
 <div className="w-full h-dvh flex">
-  <div className="w-[30%] bg-black h-full flex justify-center items-center">
+  <div className="w-[30%] bg-black h-full hidden sm:flex justify-center items-center">
     <span className="text-transparent text-[45px] bg-clip-text bg-gradient-to-r from-[#4A1D96] to-[#8d76b6] font-medium">SolveIt</span>
   </div>
-  <div className="w-[70%] bg-[#e8e8e8a7]  h-dvh flex flex-col justify-center items-center">
+  <div className="sm:w-[70%] xs:w-full  bg-[#e8e8e8a7]  h-dvh flex flex-col justify-center items-center">
   <div className="flex w-full  items-center justify-center">
       <img src={cover} alt="logo" className="w-[60px] h-[60px] rounded-full " />
-      <span className="text text-xl font-normal">CodeIt</span>
+      <span className="text text-xl font-normal">SolveIt</span>
     </div>
     <div className="flex w-full flex-col items-center my-7 gap-5 justify-center">
        <input className="w-[40%] outline-none h-8 rounded-sm" />

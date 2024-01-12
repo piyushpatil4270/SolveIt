@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
 import {ThumbUpAlt,ThumbDownAlt} from "@mui/icons-material"
-import Editor from "@monaco-editor/react"
+import { Card } from "./Card";
 
 
 export const ProblemCard = () => {
@@ -39,12 +39,11 @@ export const ProblemCard = () => {
         setProblem(res.data);
       });
   };
-  const checkAnswer = async(output:string,value:string,email:any) => {
+  const checkAnswer = async() => {
     const res = await axios
       .post<GetSolution>(`https://solveit-pi.vercel.app/api/problems/${id}/answer`, {
-        userCode: value,
-        email: email,
-        output:output,
+        answer:answer,
+        email:userEmail
       })
       .then((res) => {
         console.log(res.data)
@@ -58,110 +57,55 @@ export const ProblemCard = () => {
   
  
 
-  const handleCompilation=()=>{
-    setProcessing(true);
-    const formData = {
-      language_id: 71,
-      // encode source code in base64
-      source_code: btoa(value),
-      stdin: btoa(customInput),
-    };
-    const options = {
-      method: 'POST',
-      url: 'https://online-code-compiler.p.rapidapi.com/v1/',
-      headers: {
-        'content-type': 'application/json',
-        'X-RapidAPI-Key': '39315176b8msh06ed59e28e589e7p111e04jsn49f7d47501c0',
-        'X-RapidAPI-Host': 'online-code-compiler.p.rapidapi.com'
-      },
-      data: {
-        language: 'cpp',
-        version: 'latest',
-        code: value,
-        input: null
-      }
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log("res.data", response.data);
-        const token = response.data.token;
-        console.log("res.token",token)
-        console.log(value)
-        //checkAnswer(response.data?.output,value,userEmail)
-        const body={userCode:value,email:userEmail,output:response.data.output}
-        axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/answer`,body)
-      })
-      .catch((err) => {
-        let error = err.response ? err.response.data : err;
-        setProcessing(false);
-        console.log(error);
-      });
-  }
+  
 
   
   useEffect(() => {
     fetchProblem();
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full flex gap-[10px]">
       <div className="mt-1 shadow-lg w-full ">
-        <div className="mx-[10px] flex flex-col gap-2 h-dvh ">
+        <div className="mx-[10px] flex flex-col gap-2  ">
           {problem ? (
-            <div className="flex h-full w-full gap-[15px]">
-            <div className="flex flex-col gap-[15px] py-[10px] xs:w-[50%] sm:w-[35%]">
+            <div className="flex h-full w-full gap-[10px]">
+            <div className="flex flex-col gap-[15px] py-[10px] w-full">
               <span className="text-[22px]">Problem</span>
-              <div className="flex flex-col gap-[10px]">
+              <div className="flex flex-col gap-[15px]">
                 <span className="text text-[22px] font-semibold">{problem.title}</span>
-                <div className="flex  my-2 justify-between w-[50%]  ">
-                <span className="text-green-700 text-[18px] font-medium">Easy</span>
+                <div className="flex  my-2 justify-between xs:w-[60%] md:w-[30%]  ">
+                <span className="text-green-700 text-[18px] font-medium ">Easy</span>
                 
                 <ThumbUpAlt fontSize='small' color="success"/>
                 <ThumbDownAlt fontSize='small' color="warning"/>
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
-               {/*response ? (
-                  <span className="text-[14px] text-green-700">{response}</span>
-                ) : (
-                  <span className="text-[12px] text-red-700">{error}</span>
-                )*/}
-                {/*answer && (
-                  <button
-                    className="w-fit h-fit py-[2px] px-[4px] bg-green-500 rounded-sm text-white"
-                    onClick={() => {
-                      checkAnswer();
-                    }}
-                  >
-                    Submit
-                  </button>
-                  )*/}
-                <button
+                
+                <div className="xs:w-[80%] md:w-[45%] flex  h-7 bg-slate-200 rounded-sm outline-none ">
+                  <input className="ml-4 h-full bg-transparent outline-none" />
+                </div>
+
+              <button
                 className="px-1 py-1 bg-green-600 w-fit my-2 rounded-sm text-white outline-none"
-                onClick={handleCompilation}
+                onClick={checkAnswer}
                 >
-                  Compile and Run
+                  Check answer
                 </button>
                
               </div>
             </div>
-            <div className="w-[65%]">
-             
-             <Editor
-                theme="vs-dark"
-                defaultLanguage="python"
-                height="70%"
-                width="100%"
-                value={problem.starterCode}
-                onChange={handleEditorChange}
-                />
-            </div>
+            
             </div>
           ) : (
             "Loading..."
           )}
         </div>
       </div>
+      <Card>
+      <p className="font-medium">“An equation for me has no meaning, unless it expresses a thought of God.”</p><br/>-Srinivasa Ramanujan
+
+
+      </Card>
     </div>
   );
 };

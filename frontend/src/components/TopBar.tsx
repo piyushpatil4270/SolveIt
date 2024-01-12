@@ -8,7 +8,7 @@ export const TopBar = () => {
         <div className="flex w-full h-[70%] mx-[10%] justify-start items-center  gap-[10px]">
           <img src={Logo} className="xs:w-[40px] ml-[5%] sm:h-[40px]  sm:w-[80px] sx:h-[80px] object-contain" />
           <span className="text-white xs:text-[18px] sm:text-[25px] text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 ">
-            CodeIt
+            SolveIt
           </span>
         </div>
         <div className="sm:w-full mx-[5%] xs:w-[100%] ">

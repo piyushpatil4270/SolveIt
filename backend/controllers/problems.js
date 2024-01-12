@@ -24,21 +24,7 @@ export const getAllProblems=async(req,res)=>{
 
 export const checkSolution=async(req,res)=>{
     try {
-        const {userCode,email,output}=req.body
-        const {id} =req.params
-        const problem= await Problems.find({_id:id})
-        const currentProblem= problem[0]
-       // const result = Compile({answer:currentProblem.answer.toString(),output,mainFunction:currentProblem.functionName,userCode})
-       // return res.status(202).json({usercode:userCode,email,output})
-       const answer = String(currentProblem.answer)
-       const code=String(userCode)
-      
-      const mainFunction=currentProblem.functionName.toLowerCase()
-       if(output.includes(answer) && code.toLowerCase().includes(mainFunction))  return res.status(202).json("correct")
-       else if(output.includes(answer) && !code.toLowerCase().includes(mainFunction) )  return res.status(202).json("incorrect")
-       else if(output.includes("error"))  return res.status(202).json(output)
-       return res.status(202).json(output)
-       //return res.status(202).json(currentProblem)
+       res.status(202).json("check solution")
     } catch (error) {
         res.status(404).json(error.message)
     }
