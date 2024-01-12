@@ -27,8 +27,25 @@ export const checkAnswer=async(req,res)=>{
         const {id}=req.params
         const {answer,email}=req.body
         const problem=await Problems.find({_id:id})
+        const user= await Users.find({email:email})
         const solution=problem[0].answer
-        if(solution===Number(answer)) return res.status(201).json("Correct Answer")
+        if(solution===Number(answer)){
+        let userSubmission={title:problem[0].title,status:"Correct"}
+        /* db.students.updateOne(
+             { _id: 1 },
+             { $push: { scores: 89 } }
+        )*/
+       await  Users.updateOne(
+            {email:email},
+            {$push:{submissions:userSubmission}}
+        )
+        return res.status(201).json("Correct Answer")
+        }
+        let userSubmission={title:problem[0].title,status:"Wrong"}
+        await Users.updateOne(
+            {email:email},
+            {$push:{submissions:userSubmission}}
+        )
         return res.status(203).json("Wrong Answer")
     } catch (error) {
         res.status(404).json(error.message)
