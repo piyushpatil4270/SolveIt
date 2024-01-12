@@ -13,6 +13,14 @@ const users=Schema({
     submissions:{
         type:Array,
         default:[]
+    },
+    likes:{
+        type:Array,
+        default:[]
+    },
+    dislikes:{
+        type:Array,
+        default:[]
     }
 })
 

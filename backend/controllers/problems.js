@@ -31,7 +31,7 @@ export const checkAnswer=async(req,res)=>{
         const solution=problem[0].answer
         let today = new Date().toISOString().slice(0, 10)
         if(solution===Number(answer)){
-        let userSubmission={title:problem[0].title,status:"Accepted",date:today}
+        let userSubmission1={title:problem[0].title,status:"Accepted",date:today}
         /* db.students.updateOne(
              { _id: 1 },
              { $push: { scores: 89 } }
@@ -39,14 +39,14 @@ export const checkAnswer=async(req,res)=>{
        await  Users.updateOne(
             {email:email},
             { $inc: { points: +1}},
-            {$push:{submissions:userSubmission}}
+            {$push:{submissions:userSubmission1}}
         )
         return res.status(201).json("Correct Answer...")
         }
-        let userSubmission={title:problem[0].title,status:"Rejected",date:today}
+        let userSubmission2={title:problem[0].title,status:"Rejected",date:today}
         await Users.updateOne(
             {email:email},
-            {$push:{submissions:userSubmission}}
+            {$push:{submissions:userSubmission2}}
         )
         return res.status(203).json("Wrong Answer...")
     } catch (error) {
