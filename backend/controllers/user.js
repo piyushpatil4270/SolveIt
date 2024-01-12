@@ -20,7 +20,8 @@ export const userSignUp = async (req, res) => {
 
 export const userLogIn=async(req,res)=>{
   try {
-    res.status(202).json("User Login")
+    const {body}=req
+    res.status(202).json(body)
   } catch (error) {
     res.status(404).json(error.message)
   }

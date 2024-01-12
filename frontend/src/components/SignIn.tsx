@@ -4,9 +4,12 @@ import { auth } from "../App";
 import cover from "../../src/assets/problem-solving.png"
 import gmailLogo from "../../src/assets/download (1).png"
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userAtom } from "../store/atoms/user";
+import axios from "axios";
 const  provider= new GoogleAuthProvider()
 export const SignIn = () => {
-   
+   const [user,setUser]  = useRecoilState(userAtom)
   const [formData,setFormData]=useState({
     email:"",
     password:""
@@ -17,6 +20,12 @@ export const SignIn = () => {
       ...formData,
       [name]:value
     })
+  }
+
+  async function logIn(){
+    if(formData.email && formData.password){
+      const res=axios.post("https://solveit-pi.vercel.app/api/users/login",formData)
+    }
   }
 
   async function onSignIn() {
@@ -60,7 +69,7 @@ export const SignIn = () => {
     <div className="flex w-full flex-col items-center my-7 gap-5 justify-center">
        <input placeholder="  Enter your email" className="xs:w-[60%] md:w-[40%] outline-none h-8 rounded-sm" value={formData.email} name="email" onChange={(e)=>{handleChange(e.target.value,"email")}} />
        <input placeholder="  Enter your password" className="xs:w-[60%] md:w-[40%] outline-none h-8 rounded-sm" value={formData.password} name="password" onChange={(e)=>{handleChange(e.target.value,"password")}} />
-       <button className="w-fit h-fit py-1 px-3 bg-green-500 rounded-sm">Login</button>
+       <button className="w-fit h-fit py-1 px-3 bg-green-500 rounded-sm" onClick={logIn} >Login</button>
     </div>
     <div className="w-[50%] h-[1px] bg-[#2e2e2e82]" />
     <div className="w-[45px] h-[45px] cursor-pointer flex  justify-center my-7 items-center bg-white rounded-full " onClick={()=>onSignIn()} >
