@@ -24,7 +24,10 @@ export const getAllProblems=async(req,res)=>{
 
 export const checkAnswer=async(req,res)=>{
     try {
-       res.status(203).json("check solution")
+        const {id}=req.params
+        const {answer,email}=req.body
+        const problem=await Problems.find({_id:id})
+       res.status(203).json(problem)
     } catch (error) {
         res.status(404).json(error.message)
     }
