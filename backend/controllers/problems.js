@@ -30,7 +30,7 @@ export const checkAnswer=async(req,res)=>{
         const user= await Users.find({email:email})
         const solution=problem[0].answer
         if(solution===Number(answer)){
-        let userSubmission={title:problem[0].title,status:"Correct"}
+        let userSubmission={title:problem[0].title,status:"Accepted"}
         /* db.students.updateOne(
              { _id: 1 },
              { $push: { scores: 89 } }
@@ -41,7 +41,7 @@ export const checkAnswer=async(req,res)=>{
         )
         return res.status(201).json("Correct Answer")
         }
-        let userSubmission={title:problem[0].title,status:"Wrong"}
+        let userSubmission={title:problem[0].title,status:"Rejected"}
         await Users.updateOne(
             {email:email},
             {$push:{submissions:userSubmission}}
