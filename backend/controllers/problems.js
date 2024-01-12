@@ -38,8 +38,8 @@ export const checkAnswer=async(req,res)=>{
         )*/
        await  Users.updateOne(
             {email:email},
-            { $inc: { points: +1}},
-            {$push:{submissions:userSubmission1}}
+            {$push:{submissions:userSubmission1}},
+            { $inc: { points: +1}}
         )
         return res.status(201).json("Correct Answer...")
         }
