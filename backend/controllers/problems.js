@@ -41,14 +41,14 @@ export const checkAnswer=async(req,res)=>{
             { $inc: { points: +1}},
             {$push:{submissions:userSubmission}}
         )
-        return res.status(201).json("Correct Answer")
+        return res.status(201).json("Correct Answer...")
         }
         let userSubmission={title:problem[0].title,status:"Rejected",date:today}
         await Users.updateOne(
             {email:email},
             {$push:{submissions:userSubmission}}
         )
-        return res.status(203).json("Wrong Answer")
+        return res.status(203).json("Wrong Answer...")
     } catch (error) {
         res.status(404).json(error.message)
     }
