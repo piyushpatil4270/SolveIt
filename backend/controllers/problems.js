@@ -69,7 +69,7 @@ export const getLeaderboard=async(req,res)=>{
 export const getUserSubmissions=async(req,res)=>{
     try {
         const {email}=req.body
-        const user=await Users.find({email:email})
+        const user=await Users.find({email:email}).sort({_id:-1}) 
         const submissions=user[0]?.submissions
         
         res.status(202).json(submissions)
