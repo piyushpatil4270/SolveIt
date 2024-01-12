@@ -50,17 +50,9 @@ export const ProblemCard = () => {
       });
   };
 
-  const handleEditorChange=(value:any)=>{
-   setValue(value)
-   console.log("editor value",value)
-  }
   
- 
-
   
-
-  
-  useEffect(() => {
+ useEffect(() => {
     fetchProblem();
   }, []);
   return (
@@ -82,7 +74,7 @@ export const ProblemCard = () => {
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 
                 <div className="xs:w-[80%] md:w-[45%] flex  h-7 bg-slate-200 rounded-sm outline-none ">
-                  <input className="ml-4 h-full bg-transparent outline-none" />
+                  <input className="ml-4 h-full bg-transparent outline-none" value={answer} onChange={(e)=>setAnswer(e.target.value)}/>
                 </div>
 
               <button
