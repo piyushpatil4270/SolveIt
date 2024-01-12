@@ -16,3 +16,12 @@ export const userSignUp = async (req, res) => {
     console.log(error);
   }
 };
+
+
+export const userLogIn=async(req,res)=>{
+  try {
+    res.status(202).json("User Login")
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+}
