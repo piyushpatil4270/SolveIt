@@ -30,7 +30,7 @@ export const LeaderBoard = () => {
     },[])
     return (
 
-        <div className="mt-1 shadow-lg ">
+        <div className="mt-2 shadow-lg  bg-white">
            {leaderboard?(
             <>
             <span className="text-[20px] ml-[10px] mt-[10px]">LeaderBoard</span>
@@ -44,7 +44,7 @@ export const LeaderBoard = () => {
                 <span className="w-[10%]" >{i+1}.</span>
                 <div className="w-[10%]">
                 
-                <div className={`w-[25px] h-[25px]  flex justify-center items-center rounded-full text-[#2c2c2c]`}  style={{backgroundColor:color}}>
+                <div className={`w-[25px] h-[25px]  flex justify-center items-center rounded-full text-[#e6e6e6]`}  style={{backgroundColor:color}}>
                 {user.email[0]?.toUpperCase()}
                 </div>
                 </div>

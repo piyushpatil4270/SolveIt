@@ -6,7 +6,7 @@ import { userAtom } from "../store/atoms/user";
 import {ThumbUpAlt,ThumbDownAlt} from "@mui/icons-material"
 import { Card } from "./Card";
 import { Loader } from "./Loader";
-
+import {Quotes} from "../utils/Quotes.ts"
 
 export const ProblemCard = () => {
   const { id } = useParams();
@@ -23,7 +23,7 @@ export const ProblemCard = () => {
     title: string;
     description: string;
     answer: string;
-    starterCode:string
+    category:string;
   }>();
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
@@ -57,14 +57,17 @@ export const ProblemCard = () => {
   };
 
   
-  
- useEffect(() => {
-    fetchProblem();
+let index=Math. floor(Math. random()*10)
+useEffect(() => {
+fetchProblem();
+
   }, []);
+  
   return (
     <div className="w-full flex gap-[10px]">
-      <div className="mt-1 shadow-lg w-full ">
+      <div className="mt-2 shadow-lg w-full bg-white ">
         <div className="mx-[10px] flex flex-col gap-2  ">
+      
           {problem ? (
             <div className="flex h-full w-full gap-[10px]">
             <div className="flex flex-col gap-[15px] py-[10px] w-full">
@@ -72,10 +75,11 @@ export const ProblemCard = () => {
               <div className="flex flex-col gap-[15px]">
                 <span className="text text-[22px] font-semibold">{problem.title}</span>
                 <div className="flex  my-2 justify-between xs:w-[60%] md:w-[30%]  ">
-                <span className="text-green-700 text-[18px] font-medium ">Easy</span>
-                
-                <ThumbUpAlt fontSize='small' color="success"/>
-                <ThumbDownAlt fontSize='small' color="warning"/>
+                {problem.category==="1" && <span className="text-green-700 text-[18px] font-medium ">Easy</span>}
+                {problem.category==="2" && <span className="text-orange-500 text-[18px] font-medium ">Medium</span>}
+                {problem.category==="3" && <span className="text-red-600 text-[18px] font-medium ">Hard</span>}
+                <ThumbUpAlt fontSize='small' color="action"/>
+                <ThumbDownAlt fontSize='small' color="action"/>
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 
@@ -111,7 +115,7 @@ export const ProblemCard = () => {
         </div>
       </div>
       <Card>
-      <p className="font-medium">“An equation for me has no meaning, unless it expresses a thought of God.”</p><br/>-Srinivasa Ramanujan
+      <p className="font-medium">{Quotes[index].quote}</p><br/>{Quotes[index].by}
 
 
       </Card>

@@ -16,7 +16,7 @@ export const Problems = () => {
   useEffect(() => {
     fetchProblems();
   }, []);
-  return <div>{problems ? <div className="mt-1 shadow-lg">
+  return <div>{problems ? <div className="mt-2  shadow-lg bg-white">
    <span className="text-[20px] ml-[10px] mt-[10px]">Problems</span>
    <div className="mx-[10px] flex flex-col gap-2">
     {problems && problems.map((problem,i)=>(

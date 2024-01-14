@@ -13,8 +13,8 @@ export const About = () => {
     });
   };
   return (
-    <div className="flex gap-[10px]">
-      <div className="flex mt-1 shadow-lg gap-2 w-full ">
+    <div className="flex gap-[10px] items-start">
+      <div className="flex mt-2 shadow-lg gap-2 w-full bg-white ">
         <div className="ml-[10px]  my-[10px] xs:w-[60%]">
           <div>
             <span className="text-[20px]">About</span>
@@ -35,7 +35,8 @@ export const About = () => {
           </div>
         </div>
       </div>
-      <Card>
+      
+      <Card >
         <span className="xs:hidden  sm:flex">Without mathematics, there's nothing you can do. Everything around you is mathematics</span>
         <button
           className="bg-green-600 text-[12px] w-[55px] h-[25px] rounded-sm"
@@ -44,6 +45,7 @@ export const About = () => {
           Logout
         </button>
       </Card>
-    </div>
+      </div>
+  
   );
 };

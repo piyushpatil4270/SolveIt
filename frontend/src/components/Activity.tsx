@@ -16,7 +16,7 @@ export const Activity=()=>{
     useEffect(()=>{
         userSubmissions()
     },[])
-    return <div className="mt-1 shadow-lg">
+    return <div className=" shadow-lg mt-2 bg-white">
        <span className="text-[20px] ml-[10px] mt-[10px]">Activity</span>
        <div className="mx-[10px] flex flex-col gap-2">
         {submissions?(

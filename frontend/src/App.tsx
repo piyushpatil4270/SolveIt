@@ -70,11 +70,11 @@ function StoreApp(){
       <>
       <div className="h-dvh">
      
-          <div className="xs:w-[100%] sm:w-full align-center">
+          <div className="xs:w-[100%] sm:w-full align-center bg-[#f0f0f0dd] h-full">
           {user.user?.email?(
           <>
           <TopBar/>
-          <div className="mt-2 ">
+          <div className="mx-2 ">
           <Routes>
            
             <Route path="/" Component={About}/>
