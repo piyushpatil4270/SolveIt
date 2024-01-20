@@ -6,7 +6,7 @@ router.get("/all",getAllProblems)
 router.get("/:id",getProblem)
 router.post("/:id/answer",checkAnswer)
 router.post("/:id/like",likeProblem)
-router.post("/:id/like",dislikeProblem)
+router.post("/:id/dislike",dislikeProblem)
 router.post('/user/submissions',getUserSubmissions)
 
 export default router
