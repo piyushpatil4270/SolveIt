@@ -18,12 +18,15 @@ export const ProblemCard = () => {
   
   console.log(user[0].user?.email);
   const userEmail = user[0].user?.email;
+  const [trigger,setTrigger]=useState(false)
   const [problem, setProblem] = useState<{
     _id: string;
     title: string;
     description: string;
     answer: string;
     category:string;
+    likes:[];
+    dislikes:[];
   }>();
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
@@ -63,17 +66,18 @@ const index=useMemo(()=>{
 
 const likeProblem=async()=>{
   const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/like`,{userEmail})
+  setTrigger(!trigger)
 }
 
 const dislikeProblem=async()=>{
   const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/dislike`,{userEmail})
+  setTrigger(!trigger)
 }
  
   
 useEffect(() => {
 fetchProblem();
-
-  }, []);
+}, [trigger]);
   
   return (
     <div className="w-full flex gap-[10px]">
@@ -90,8 +94,10 @@ fetchProblem();
                 {problem.category==="1" && <span className="text-green-700 text-[18px] font-medium ">Easy</span>}
                 {problem.category==="2" && <span className="text-orange-500 text-[18px] font-medium ">Medium</span>}
                 {problem.category==="3" && <span className="text-red-600 text-[18px] font-medium ">Hard</span>}
-                <ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem} />
-                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={dislikeProblem}  />
+                
+                {userEmail && problem?.likes?.includes(userEmail)?(<ThumbUpAlt fontSize='small' color="success" style={{cursor:"pointer"}} onClick={likeProblem} />):(<ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem} />)}
+                {userEmail && problem?.dislikes?.includes(userEmail)?(<ThumbDownAlt fontSize='small' color="error" style={{cursor:"pointer"}} onClick={dislikeProblem}  />):(<ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={dislikeProblem}  />)}
+                
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 

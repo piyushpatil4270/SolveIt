@@ -92,6 +92,7 @@ export const likeProblem=async(req,res)=>{
         const {id}=req.params
         const problem= await Problems.find({_id:id})
         const likes=problem[0].likes
+        const dislikes=problem[0].dislikes
         const user=likes.find(user=>user===userEmail)
         if(user){
             const newlikes=likes.filter((user)=>user!==userEmail)
@@ -101,8 +102,10 @@ export const likeProblem=async(req,res)=>{
                 )
                 return res.status(202).json("Like Removed")
         }
+        const newdislikes=dislikes.filter((user)=>user!==userEmail)
         await Problems.updateOne(
             {_id:id},
+            {$set:{dislikes:newdislikes}},
             {$push:{likes:userEmail}}
         )
         return res.status(202).json("Like Added")
@@ -117,6 +120,7 @@ export const dislikeProblem=async(req,res)=>{
         const {id}=req.params
         const problem=await Problems.find({_id:id})
         const dislikes=problem[0].dislikes
+        const likes=problem[0].likes
         const user=dislikes.find(user=>user===userEmail)
         if(user){
             const newlikes=dislikes.filter((user)=>user!==userEmail)
@@ -126,8 +130,10 @@ export const dislikeProblem=async(req,res)=>{
                 )
                 return res.status(202).json("Dislike Removed")
         }
+        const newlikes=likes.filter((user)=>user!==userEmail)
         await Problems.updateOne(
             {_id:id},
+            {$set:{likes:newlikes}},
             {$push:{dislikes:userEmail}}
         )
         return res.status(202).json("Disike Added")
