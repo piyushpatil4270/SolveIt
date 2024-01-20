@@ -2,7 +2,6 @@ import { Problems } from "../model/problems.js"
 import { Submissions } from "../model/submissions.js"
 import { Compile } from "../utils/CheckCompile.js"
 import {Users} from "../model/users.js"
-import {ObjectId} from "mongodb"
 export const getProblem=async(req,res)=>{
     try {
        const {id}=req.params 
@@ -93,7 +92,7 @@ export const likeProblem=async(req,res)=>{
         const {id}=req.params
         const problem= await Problems.find({_id:id})
         const likes=problem[0].likes
-        const user=likes.find(userEmail)
+        const user=likes.find(user=>user===userEmail)
         if(user){
             const newlikes=likes.filter((user)=>user!==userEmail)
             await Problems.update(
@@ -118,7 +117,7 @@ export const dislikeProblem=async(req,res)=>{
         const {id}=req.params
         const problem=await Problems.find({_id:id})
         const dislikes=problem[0].dislikes
-        const user=dislikes.find(userEmail)
+        const user=dislikes.find(user=>user===userEmail)
         if(user){
             const newlikes=dislikes.filter((user)=>user!==userEmail)
             await Problems.update(
