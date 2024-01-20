@@ -106,6 +106,9 @@ export const likeProblem=async(req,res)=>{
         await Problems.updateOne(
             {_id:id},
             {$set:{dislikes:newdislikes}},
+        )
+        await Problems.updateOne(
+            {_id:id},
             {$push:{likes:userEmail}}
         )
         return res.status(202).json("Like Added")
@@ -133,8 +136,11 @@ export const dislikeProblem=async(req,res)=>{
         const newlikes=likes.filter((user)=>user!==userEmail)
         await Problems.updateOne(
             {_id:id},
-            {$set:{likes:newlikes}},
             {$push:{dislikes:userEmail}}
+        )
+        await Problems.updateOne(
+            {_id:id},
+            {$set:{likes:newlikes}},
         )
         return res.status(202).json("Disike Added")
 
