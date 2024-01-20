@@ -13,7 +13,9 @@ const problems=Schema({
     answer:{
         type:Number,
         required:true
-    }
+    },
+    likes:[],
+    dislikes:[]
 })
 
 export const Problems=model("problems",problems)

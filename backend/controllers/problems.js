@@ -89,7 +89,7 @@ export const getUserSubmissions=async(req,res)=>{
 
 export const likeProblem=async(req,res)=>{
     try {
-        res.status(202).json("Liked the problem")
+        res.status(202).json(req.body)
     } catch (error) {
         res.status(404).json("error.message")
     }
