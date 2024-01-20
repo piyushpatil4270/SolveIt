@@ -39,7 +39,7 @@ export const LeaderBoard = () => {
 
            let color=stringToColour(user.email)
 
-            return <div className="flex  shadow-sm w-full h-[50px] items-center justify-start ">
+            return <div className="flex  shadow-sm w-full h-[50px] items-center justify-start " key={i}>
                 
                 <span className="w-[10%]" >{i+1}.</span>
                 <div className="w-[10%]">

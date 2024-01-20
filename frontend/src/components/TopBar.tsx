@@ -49,8 +49,8 @@ function NavbarItem({ title, route }: { title: string; route: string }) {
 const Navbar = () => {
   return (
     <div className="flex xs:w-full xs:justify-start sm:justify-normal">
-      {TopBaritems.map((item) => (
-        <NavbarItem route={item.route} title={item.title} />
+      {TopBaritems.map((item,i) => (
+        <NavbarItem route={item.route} key={i} title={item.title} />
       ))}
     </div>
   );

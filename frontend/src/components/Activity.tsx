@@ -24,8 +24,8 @@ export const Activity=()=>{
        <div className="mx-[10px] flex flex-col gap-2">
         {submissions?(
         <div className="flex flex-col shadow-sm gap-[25px] w-full h-fit py-[15px]">
-            {submissions.map((submission)=>(
-                <div className="flex gap-[15px]">
+            {submissions.map((submission,i)=>(
+                <div className="flex gap-[15px]" key={i}>
                 <div className="w-[60%]">
                 <span>{submission.title}</span>
                 </div>

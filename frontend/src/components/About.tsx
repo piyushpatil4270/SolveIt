@@ -1,16 +1,15 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../App";
-import { useResetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
 import { Card } from "./Card";
 
 export const About = () => {
   const reset = useResetRecoilState(userAtom);
   const handleLogout = async () => {
-    signOut(auth).then(() => {
-      reset;
-      console.log("Signout Successfully");
-    });
+    reset()
+    auth && signOut(auth)
+    
   };
   return (
     <div className="flex gap-[10px] items-start">

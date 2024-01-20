@@ -20,7 +20,7 @@ export const Problems = () => {
    <span className="text-[20px] ml-[10px] mt-[10px]">Problems</span>
    <div className="mx-[10px] flex flex-col gap-2">
     {problems && problems.map((problem,i)=>(
-        <div className="flex  justify-between shadow-sm gap-[25px] w-full h-fit py-[15px]">
+        <div className="flex  justify-between shadow-sm gap-[25px] w-full h-fit py-[15px]" key={i}>
             <div className="flex gap-[35px] w-[60%]">
             <span className="w-auto">#{i+1}.</span>
             <span className="w-[80%]">{problem.title}</span>
