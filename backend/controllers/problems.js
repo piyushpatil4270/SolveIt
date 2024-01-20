@@ -95,13 +95,13 @@ export const likeProblem=async(req,res)=>{
         const user=likes.find(user=>user===userEmail)
         if(user){
             const newlikes=likes.filter((user)=>user!==userEmail)
-            await Problems.update(
+            await Problems.updateOne(
                 {_id:id},
                 {$set:{likes:newlikes}}
                 )
                 return res.status(202).json("Like Removed")
         }
-        await Problems.update(
+        await Problems.updateOne(
             {_id:id},
             {$push:{likes:userEmail}}
         )
@@ -120,13 +120,13 @@ export const dislikeProblem=async(req,res)=>{
         const user=dislikes.find(user=>user===userEmail)
         if(user){
             const newlikes=dislikes.filter((user)=>user!==userEmail)
-            await Problems.update(
+            await Problems.updateOne(
                 {_id:id},
                 {$set:{dislikes:newlikes}}
                 )
                 return res.status(202).json("Dislike Removed")
         }
-        await Problems.update(
+        await Problems.updateOne(
             {_id:id},
             {$push:{dislikes:userEmail}}
         )
