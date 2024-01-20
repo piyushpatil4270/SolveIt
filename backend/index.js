@@ -11,8 +11,7 @@ connection()
 app.use(express.json())
 app.use(cors())
 
-let port;
-port=5000
+let port=5000
 
 app.get("/",async(req,res)=>{
     const users= await Users.find()
