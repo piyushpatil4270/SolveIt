@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user";
@@ -57,7 +57,13 @@ export const ProblemCard = () => {
   };
 
   
-let index=Math. floor(Math. random()*10)
+const index=useMemo(()=>{
+ return Math. floor(Math. random()*10);
+},[])
+
+
+ 
+  
 useEffect(() => {
 fetchProblem();
 
@@ -78,8 +84,8 @@ fetchProblem();
                 {problem.category==="1" && <span className="text-green-700 text-[18px] font-medium ">Easy</span>}
                 {problem.category==="2" && <span className="text-orange-500 text-[18px] font-medium ">Medium</span>}
                 {problem.category==="3" && <span className="text-red-600 text-[18px] font-medium ">Hard</span>}
-                <ThumbUpAlt fontSize='small' color="action"/>
-                <ThumbDownAlt fontSize='small' color="action"/>
+                <ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={()=>{}} />
+                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={()=>{}}  />
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 

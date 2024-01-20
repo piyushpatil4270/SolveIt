@@ -26,7 +26,7 @@ export const userLogIn=async(req,res)=>{
       const newUser= await Users.create({
         email:email
       })
-     return res.status(201).json(newUser.email)
+     return res.status(201).json(user?user:newUser)
     }
     res.status(203).json(user[0].email)
   } catch (error) {
