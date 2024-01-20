@@ -87,8 +87,8 @@ fetchProblem();
                 {problem.category==="1" && <span className="text-green-700 text-[18px] font-medium ">Easy</span>}
                 {problem.category==="2" && <span className="text-orange-500 text-[18px] font-medium ">Medium</span>}
                 {problem.category==="3" && <span className="text-red-600 text-[18px] font-medium ">Hard</span>}
-                <ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={()=>{}} />
-                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={()=>{}}  />
+                <ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem} />
+                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem}  />
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 
