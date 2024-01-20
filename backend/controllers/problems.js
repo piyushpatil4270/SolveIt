@@ -108,7 +108,7 @@ export const likeProblem=async(req,res)=>{
         )
         return res.status(202).json("Like Added")
     } catch (error) {
-        res.status(404).json("error.message")
+        res.status(404).json(error.message)
     }
 }
 
