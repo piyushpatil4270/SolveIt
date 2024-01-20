@@ -62,9 +62,12 @@ const index=useMemo(()=>{
 },[])
 
 const likeProblem=async()=>{
-  const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/like`,userEmail)
+  const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/like`,{userEmail})
 }
 
+const dislikeProblem=async()=>{
+  const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/dislike`,{userEmail})
+}
  
   
 useEffect(() => {
@@ -88,7 +91,7 @@ fetchProblem();
                 {problem.category==="2" && <span className="text-orange-500 text-[18px] font-medium ">Medium</span>}
                 {problem.category==="3" && <span className="text-red-600 text-[18px] font-medium ">Hard</span>}
                 <ThumbUpAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem} />
-                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={likeProblem}  />
+                <ThumbDownAlt fontSize='small' color="action" style={{cursor:"pointer"}} onClick={dislikeProblem}  />
                 </div>
                 <span className="text-[16px] font-medium">{problem.description}</span>
                 

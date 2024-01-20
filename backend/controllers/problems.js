@@ -89,8 +89,52 @@ export const getUserSubmissions=async(req,res)=>{
 
 export const likeProblem=async(req,res)=>{
     try {
+        const {userEmail}=req.body
+        const {id}=req.params
         res.status(202).json(req.body)
+        const problem= await Problems.find({_id:id})
+        const likes=problem[0].likes
+        const user=likes.find(userEmail)
+        if(user){
+            const newlikes=likes.filter((user)=>user!==userEmail)
+            await Problems.update(
+                {_id:id},
+                {$set:{likes:newlikes}}
+                )
+                return res.status(202).json("Like Removed")
+        }
+        await Problems.update(
+            {_id:id},
+            {$push:{likes:userEmail}}
+        )
+        return res.status(202).json("Like Added")
     } catch (error) {
         res.status(404).json("error.message")
+    }
+}
+
+export const dislikeProblem=async(req,res)=>{
+    try {
+        const {userEmail}=req.body
+        const {id}=req.params
+        const problem=await Problems.find({_id:id})
+        const dislikes=problem[0].dislikes
+        const user=dislikes.find(userEmail)
+        if(user){
+            const newlikes=dislikes.filter((user)=>user!==userEmail)
+            await Problems.update(
+                {_id:id},
+                {$set:{dislikes:newlikes}}
+                )
+                return res.status(202).json("Dislike Removed")
+        }
+        await Problems.update(
+            {_id:id},
+            {$push:{dislikes:userEmail}}
+        )
+        return res.status(202).json("Disike Added")
+
+    } catch (error) {
+        res.status(404).json(error.message)
     }
 }
