@@ -91,7 +91,6 @@ export const likeProblem=async(req,res)=>{
     try {
         const {userEmail}=req.body
         const {id}=req.params
-        res.status(202).json(req.body)
         const problem= await Problems.find({_id:id})
         const likes=problem[0].likes
         const user=likes.find(userEmail)
