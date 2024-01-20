@@ -61,6 +61,9 @@ const index=useMemo(()=>{
  return Math. floor(Math. random()*10);
 },[])
 
+const likeProblem=async()=>{
+  const res=await axios.post(`https://solveit-pi.vercel.app/api/problems/${id}/like`,userEmail)
+}
 
  
   
