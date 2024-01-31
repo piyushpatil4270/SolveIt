@@ -23,7 +23,7 @@ export const About = () => {
               SolveIt is a platform for math geeks where they can practice their
               problem solving skills and enhance them.
             </span>
-            <span className="text-[15px]">
+            <span className="text-[20px]">
               SolveIt contains various problems including basic addition,
               subtraction, multiplication and division to complex mathematical
               computational problems.
