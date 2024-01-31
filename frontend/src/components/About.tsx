@@ -36,7 +36,7 @@ export const About = () => {
       </div>
       
       <Card >
-        <span className="xs:hidden  sm:flex">Without mathematics, there's nothing you can do. Everything around you is mathematics</span>
+        <span className="xs:hidden text-[15px]  sm:flex">Without mathematics, there's nothing you can do. Everything around you is mathematics</span>
         <button
           className="bg-green-600 text-[12px] w-[55px] h-[25px] rounded-sm"
           onClick={() => handleLogout()}
