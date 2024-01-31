@@ -40,7 +40,7 @@ const TopBaritems = [
 
 function NavbarItem({ title, route }: { title: string; route: string }) {
   return (
-    <div className="sm:mx-10 xs:mx-3 text-slate-500 text-[lg] xs:text-[14px] sm:text-[16px] cursor-pointer hover:text-white">
+    <div className="sm:mx-10 xs:mx-3 text-slate-500 text-[lg] xs:text-[14px] sm:text-[20px] cursor-pointer hover:text-white">
       <Link to={route}>{title}</Link>
     </div>
   );

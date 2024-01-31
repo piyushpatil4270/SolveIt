@@ -16,14 +16,14 @@ export const About = () => {
       <div className="flex mt-2 shadow-lg gap-2 w-full h-[50%] bg-white ">
         <div className="ml-[10px]  my-[10px] xs:w-[60%]">
           <div>
-            <span className="text-[25px]">About</span>
+            <span className="text-[22px]">About</span>
           </div>
           <div className="w-full ">
-            <span className="text-[20px] w-full">
+            <span className="text-[18px] w-full">
               SolveIt is a platform for math geeks where they can practice their
               problem solving skills and enhance them.
             </span>
-            <span className="text-[20px]">
+            <span className="text-[15px]">
               SolveIt contains various problems including basic addition,
               subtraction, multiplication and division to complex mathematical
               computational problems.
