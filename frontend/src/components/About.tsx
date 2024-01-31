@@ -13,7 +13,7 @@ export const About = () => {
   };
   return (
     <div className="flex gap-[10px] items-start">
-      <div className="flex mt-2 shadow-lg gap-2 w-full bg-white ">
+      <div className="flex mt-2 shadow-lg gap-2 w-full h-[50%] bg-white ">
         <div className="ml-[10px]  my-[10px] xs:w-[60%]">
           <div>
             <span className="text-[20px]">About</span>
