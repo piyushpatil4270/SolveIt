@@ -50,7 +50,7 @@ export const LeaderBoard = () => {
                 </div>
                 <div className="flex xs:w-[50%] sm:w-[70%] justify-start">
 
-                <span className="text-[18px]">{user.email.split("@")[0]}</span>
+                <span className="xs:text-[12x] md:text-[18px]">{user.email.split("@")[0]}</span>
                 </div>
                 <span className="xs:w[40%] sm:w-[20%]">{user.points} points</span>
             </div>
