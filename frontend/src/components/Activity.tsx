@@ -27,7 +27,7 @@ export const Activity=()=>{
             {submissions.map((submission,i)=>(
                 <div className="flex gap-[15px]" key={i}>
                 <div className="w-[60%]">
-                <span>{submission.title}</span>
+                <span className="text-[18px]">{submission.title}</span>
                 </div>
                 <div className="w-[25%]">
                 {/*<span className={`${submission.status==="Accepted"?`text-green-500`:`text-red-600`}`}>{submission.status}</span>*/}
